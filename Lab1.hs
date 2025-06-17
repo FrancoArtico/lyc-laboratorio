@@ -92,7 +92,7 @@ data Expr a where
   Seq    :: Expr Ω    -> Expr Ω             -> Expr Ω
 
 
-{- Completar las ecuaciones semánticas -}
+{- Ecuaciones semánticas -}
 
 class DomSem dom where
   sem :: Expr dom -> Σ -> dom
