@@ -132,3 +132,37 @@ ejemplo1 = eval prog1 eIniTest
 prog2 = Seq (Input "x") (Output (Plus (Const 2) (Var "x")))
 
 ejemplo2 = eval prog2 eIniTest
+
+{- Debde devolver la suma de 2 con la entrada -}
+
+fib = Seq
+        (Input "x")
+        (Seq
+          (Assign "a" (Const 0))
+          (Seq
+            (Assign "b" (Const 1))
+            (Seq
+              (Assign "i" (Const 0))
+              (Seq
+                (While
+                  (Less (Var "i") (Var "x"))
+                  (Seq
+                    (Assign "tmp" (Var "b"))
+                    (Seq
+                      (Assign "b" (Plus (Var "a") (Var "b")))
+                      (Seq
+                        (Assign "a" (Var "tmp"))
+                        (Assign "i" (Plus (Var "i") (Const 1)))
+                      )
+                    )
+                  )
+                )
+                (Output (Var "a"))
+              )
+            )
+          )
+        )
+
+ejemploFib = eval fib eIniTest
+
+{- Debería devolver fibonacci de la entrada (x >= 0)-}
